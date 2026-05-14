@@ -26,5 +26,4 @@ An interactive tailgate map for Buffalo Bills fans showing private parking lots 
 ## 📌 Status
 In active development — built as a PM portfolio project.
 
-## 📌 Status
-In active development — built as a PM portfolio project.
+
