@@ -107,6 +107,24 @@
       "source": "Business",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "mikes-lot",
+      "name": "Mike's Lot",
+      "polygon_coordinates": [
+        [42.78014, -78.78131],
+        [42.77992, -78.78194],
+        [42.77950, -78.78183],
+        [42.77983, -78.78103]
+      ],
+      "price_usd": 0,
+      "payment_methods": [],
+      "walk_minutes": 20,
+      "amenities": [],
+      "last_updated": "2026-07-03",
+      "source": "N/A",
+      "status": "pending_review",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
