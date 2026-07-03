@@ -1,0 +1,113 @@
+{
+  "private_lots": [
+    {
+      "id": "wings-lot",
+      "name": "Wings Lot",
+      "polygon_coordinates": [
+        [42.77667, -78.77864],
+        [42.77667, -78.78211],
+        [42.77536, -78.78214],
+        [42.77500, -78.77883]
+      ],
+      "price_usd": 30,
+      "payment_methods": ["cash", "venmo"],
+      "walk_minutes": 25,
+      "amenities": ["indoor_bathrooms", "rvs_allowed"],
+      "last_updated": "2026-06-01",
+      "source": "Fan verified",
+      "status": "live",
+      "verified_for_season": 2026
+    },
+    {
+      "id": "grass-lot",
+      "name": "Grass Lot",
+      "polygon_coordinates": [
+        [42.77983, -78.78336],
+        [42.77914, -78.78669],
+        [42.77872, -78.78672],
+        [42.77875, -78.78325]
+      ],
+      "price_usd": 50,
+      "payment_methods": ["cash"],
+      "walk_minutes": 16,
+      "amenities": [],
+      "last_updated": "2026-06-01",
+      "source": "Fan verified",
+      "status": "live",
+      "verified_for_season": null
+    },
+    {
+      "id": "twin-oaks",
+      "name": "Twin Oaks",
+      "polygon_coordinates": [
+        [42.77622, -78.79411],
+        [42.77611, -78.79453],
+        [42.77475, -78.79461],
+        [42.77475, -78.79411]
+      ],
+      "price_usd": 50,
+      "payment_methods": ["cash"],
+      "walk_minutes": 15,
+      "amenities": [],
+      "last_updated": "2026-06-01",
+      "source": "Google",
+      "status": "live",
+      "verified_for_season": null
+    },
+    {
+      "id": "dannys-south",
+      "name": "Danny's South",
+      "polygon_coordinates": [
+        [42.76711, -78.79225],
+        [42.76739, -78.79347],
+        [42.76706, -78.79375],
+        [42.76686, -78.79231]
+      ],
+      "price_usd": 60,
+      "payment_methods": ["cash", "venmo"],
+      "walk_minutes": 15,
+      "amenities": [],
+      "last_updated": "2026-06-01",
+      "source": "Business",
+      "status": "live",
+      "verified_for_season": null
+    },
+    {
+      "id": "hammers",
+      "name": "Hammers",
+      "polygon_coordinates": [
+        [42.77025, -78.79086],
+        [42.77036, -78.79178],
+        [42.76997, -78.79189],
+        [42.76983, -78.79094]
+      ],
+      "price_usd": 70,
+      "payment_methods": ["cash"],
+      "walk_minutes": 5,
+      "amenities": [],
+      "last_updated": "2026-06-01",
+      "source": "Reddit",
+      "status": "live",
+      "verified_for_season": null
+    },
+    {
+      "id": "california-lot",
+      "name": "California Lot",
+      "polygon_coordinates": [
+        [42.78100, -78.78225],
+        [42.78047, -78.78353],
+        [42.78003, -78.78250],
+        [42.78072, -78.78194]
+      ],
+      "price_usd": 50,
+      "payment_methods": ["cash"],
+      "walk_minutes": 18,
+      "amenities": [],
+      "last_updated": "2026-06-07",
+      "source": "Business",
+      "status": "live",
+      "verified_for_season": null
+    }
+  ],
+  "stadium_lots": []
+}

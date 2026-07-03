@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  background: #0f172a;
+  color: #f1f5f9;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Stadium label rendered via leaflet divIcon.
+   Bills red — must stay visually distinct from both the blue private-lot
+   polygons and the grey stadium-lot polygons (Story 4 AC4). */
+.stadium-label {
+  display: inline-block;
+  background: rgba(198, 12, 48, 0.95); /* Bills red */
+  color: white;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-align: center;
+  font-size: 14px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* Hide leaflet's default focus ring on polygons — looks awkward on hover */
+.leaflet-interactive:focus {
+  outline: none;
+}
+
+/* Always-visible price label centered on each private lot.
+   pointer-events: none lets polygon hover pass through. */
+.price-tab {
+  display: inline-block;
+  background: white;
+  color: #0f172a;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.4;
+  white-space: nowrap;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+  user-select: none;
+  font-feature-settings: "tnum";
+}
