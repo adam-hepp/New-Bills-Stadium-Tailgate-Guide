@@ -58,6 +58,10 @@ const STADIUM_STYLE = {
 
 const data = lotsData as LotData;
 
+// Only "live" lots belong on the public map — "pending_review" and
+// "archived" are admin-facing workflow states, not visible to fans.
+const liveLots = data.private_lots.filter((lot) => lot.status === "live");
+
 export default function MapView() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredLot, setHoveredLot] = useState<PrivateLot | null>(null);
@@ -77,7 +81,7 @@ export default function MapView() {
   // One icon per lot, memoized so React doesn't recreate them on every render.
   const priceIcons = useMemo(() => {
     const map = new Map<string, L.DivIcon>();
-    for (const lot of data.private_lots) {
+    for (const lot of liveLots) {
       map.set(
         lot.id,
         L.divIcon({
@@ -154,7 +158,7 @@ export default function MapView() {
           />
         ))}
 
-        {data.private_lots.map((lot) => {
+        {liveLots.map((lot) => {
           const isHovered = hoveredLot?.id === lot.id;
           return (
             <Polygon
@@ -169,7 +173,7 @@ export default function MapView() {
           );
         })}
 
-        {data.private_lots.map((lot) => {
+        {liveLots.map((lot) => {
           const icon = priceIcons.get(lot.id);
           if (!icon) return null;
           return (
