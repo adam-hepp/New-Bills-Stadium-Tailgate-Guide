@@ -123,8 +123,98 @@
       "amenities": [],
       "last_updated": "2026-07-03",
       "source": "N/A",
-      "status": "pending_review",
+      "status": "live",
+      "verified_for_season": null,
+      "label_anchor": [42.77965, -78.78115]
+    },
+    {
+      "id": "kk-lot",
+      "name": "KK Lot",
+      "polygon_coordinates": [
+        [42.77994, -78.78953],
+        [42.77986, -78.78594],
+        [42.77883, -78.78931]
+      ],
+      "price_usd": 0,
+      "payment_methods": [],
+      "walk_minutes": 15,
+      "amenities": [],
+      "last_updated": "2026-07-03",
+      "source": "N/A",
+      "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "la-galleria-lot",
+      "name": "La Galleria",
+      "polygon_coordinates": [
+        [42.77650, -78.79319],
+        [42.77622, -78.79397],
+        [42.77475, -78.79406],
+        [42.77481, -78.79314]
+      ],
+      "price_usd": 0,
+      "payment_methods": [],
+      "walk_minutes": 15,
+      "amenities": [],
+      "last_updated": "2026-07-03",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
+    },
+    {
+      "id": "kettles-lot",
+      "name": "Kettle's",
+      "polygon_coordinates": [
+        [42.78283, -78.78900],
+        [42.78278, -78.78994],
+        [42.78203, -78.78975],
+        [42.78200, -78.78897]
+      ],
+      "price_usd": 0,
+      "payment_methods": [],
+      "walk_minutes": 16,
+      "amenities": [],
+      "last_updated": "2026-07-03",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
+    },
+    {
+      "id": "red-carpet-inn",
+      "name": "Red Carpet Inn",
+      "polygon_coordinates": [
+        [42.77742, -78.79347],
+        [42.77719, -78.79439],
+        [42.77656, -78.79439],
+        [42.77683, -78.79350]
+      ],
+      "price_usd": 0,
+      "payment_methods": [],
+      "walk_minutes": 15,
+      "amenities": [],
+      "last_updated": "2026-07-03",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
+    },
+    {
+      "id": "yellow-brick-lot-3",
+      "name": "Yellow Brick Lot 3",
+      "polygon_coordinates": [
+        [42.76733, -78.78925],
+        [42.76739, -78.78972],
+        [42.76706, -78.78981],
+        [42.76700, -78.78931]
+      ],
+      "price_usd": 70,
+      "payment_methods": ["cash", "venmo"],
+      "walk_minutes": 15,
+      "amenities": [],
+      "last_updated": "2026-07-03",
+      "source": "Website: https://yellowbrickparkinglot.com/",
+      "status": "live",
+      "verified_for_season": 2026
     }
   ],
   "stadium_lots": []

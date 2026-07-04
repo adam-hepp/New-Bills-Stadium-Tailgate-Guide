@@ -179,7 +179,7 @@ export default function MapView() {
           return (
             <Marker
               key={`price-${lot.id}`}
-              position={polygonCentroid(lot.polygon_coordinates)}
+              position={lot.label_anchor ?? polygonCentroid(lot.polygon_coordinates)}
               icon={icon}
               interactive={false}
             />

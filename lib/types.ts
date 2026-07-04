@@ -82,6 +82,11 @@ export interface PrivateLot {
   // when this value matches CURRENT_SEASON. Distinct from `last_updated`,
   // which only tracks edit recency, not verification.
   verified_for_season: number | null;
+
+  // Optional override for where the price tag renders on the map. Defaults
+  // to the polygon's centroid when omitted. Set this when a lot sits close
+  // enough to a neighbor that their price tags would otherwise overlap.
+  label_anchor?: LatLng;
 }
 
 // Stadium-owned lots are visual-only context — grey, non-interactive.

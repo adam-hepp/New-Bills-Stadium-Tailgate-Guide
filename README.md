@@ -65,6 +65,7 @@ Every entry in `private_lots[]` must match this shape:
 | `source`              | string                | Free-form provenance — where the info came from. Examples: `"Reddit r/buffalobills"`, `"Bills Mafia Facebook group"`, `"Direct outreach"`, `"User submission"`. |
 | `status`              | enum                  | `live` (shown on map), `pending_review` (admin-approval queue), `archived` (hidden). |
 | `verified_for_season` | number \| null        | Season year (e.g. `2026`) the lot's price, payment methods, and amenities have been confirmed for. `null` if not verified. Drives the "Season Verified" badge on the hover card — shown when this matches `CURRENT_SEASON` in [`lib/types.ts`](lib/types.ts). Bump `CURRENT_SEASON` each August after re-verifying. |
+| `label_anchor`        | `[lat, lng]` (optional) | Overrides where the price tag renders. Omit to use the polygon's centroid. Set this when a lot sits close enough to a neighbor that their price tags would otherwise overlap. |
 
 #### Excluded from MVP
 
