@@ -139,14 +139,21 @@ export default function MapView() {
             maxZoom={19}
           />
         ) : (
-          // Fallback when NEXT_PUBLIC_MAPBOX_TOKEN isn't set — bare Esri
-          // satellite, no labels. Set the token in .env.local for the
-          // proper hybrid satellite-with-labels experience.
-          <TileLayer
-            attribution='Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
-            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-            maxZoom={19}
-          />
+          // Fallback when NEXT_PUBLIC_MAPBOX_TOKEN isn't set — free, keyless
+          // Esri satellite imagery with a road-labels overlay stacked on top
+          // (KAN-28), so street names show without requiring any account.
+          <>
+            <TileLayer
+              attribution='Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
+              url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+              maxZoom={19}
+            />
+            <TileLayer
+              attribution='Labels &copy; Esri'
+              url="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}"
+              maxZoom={19}
+            />
+          </>
         )}
 
         {data.stadium_lots.map((lot) => (
