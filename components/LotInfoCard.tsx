@@ -20,7 +20,7 @@ export default function LotInfoCard({ lot }: Props) {
             {lot.name}
           </h3>
           <span className="text-white text-lg font-bold tabular-nums">
-            ${lot.price_usd}
+            {lot.price_usd > 0 ? `$${lot.price_usd}` : "Price TBD"}
           </span>
         </div>
         <p className="text-blue-100 text-xs mt-0.5">per car · per game</p>
@@ -47,7 +47,11 @@ export default function LotInfoCard({ lot }: Props) {
         <Row label="Walk to stadium" value={`${lot.walk_minutes} min walk`} />
         <Row
           label="Payment"
-          value={lot.payment_methods.map((m) => paymentLabels[m]).join(" · ")}
+          value={
+            lot.payment_methods.length > 0
+              ? lot.payment_methods.map((m) => paymentLabels[m]).join(" · ")
+              : "Not yet listed"
+          }
         />
 
         {lot.amenities.length > 0 && (
