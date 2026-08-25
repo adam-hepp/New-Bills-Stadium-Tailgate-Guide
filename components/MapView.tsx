@@ -56,7 +56,11 @@ const STADIUM_STYLE = {
   dashArray: "6 6",
 } as const;
 
-const data = lotsData as LotData;
+// lots.json's inferred JSON shape (plain number[] coordinate pairs, and a
+// label_anchor present on only some lots) is structurally looser than the
+// LotData/LatLng tuple types, so TypeScript can't verify the cast directly.
+// We trust the seed data matches the schema, so cast through `unknown`.
+const data = lotsData as unknown as LotData;
 
 // Only "live" lots belong on the public map — "pending_review" and
 // "archived" are admin-facing workflow states, not visible to fans.
@@ -109,12 +113,58 @@ export default function MapView() {
     const CARD_HEIGHT_ESTIMATE = 360;
     const OFFSET = 16;
 
+    const clamp = (value: number, max: number) => Math.min(Math.max(value, 0), Math.max(max, 0));
+
     const flipX = cursor.x + OFFSET + CARD_WIDTH > containerWidth;
     const flipY = cursor.y + OFFSET + CARD_HEIGHT_ESTIMATE > containerHeight;
-
-    return {
+    let pos = {
       left: flipX ? cursor.x - OFFSET - CARD_WIDTH : cursor.x + OFFSET,
       top: flipY ? cursor.y - OFFSET - CARD_HEIGHT_ESTIMATE : cursor.y + OFFSET,
+    };
+
+    // Nudge the card clear of the fixed "Highmark Stadium" label (KAN-10
+    // AC4) if the default cursor-relative position would land on top of it.
+    // Prefer sliding below/above the label (kept within container bounds)
+    // over the container-edge flip above, which can push the card
+    // off-screen when the label sits near a viewport edge.
+    if (rect) {
+      const stadiumEl = containerRef.current?.querySelector<HTMLElement>(".stadium-label");
+      if (stadiumEl) {
+        const sRect = stadiumEl.getBoundingClientRect();
+        const stadiumBox = {
+          left: sRect.left - rect.left,
+          top: sRect.top - rect.top,
+          right: sRect.right - rect.left,
+          bottom: sRect.bottom - rect.top,
+        };
+        const overlaps = (p: { left: number; top: number }) =>
+          p.left < stadiumBox.right &&
+          p.left + CARD_WIDTH > stadiumBox.left &&
+          p.top < stadiumBox.bottom &&
+          p.top + CARD_HEIGHT_ESTIMATE > stadiumBox.top;
+
+        if (overlaps(pos)) {
+          const candidates = [
+            { left: pos.left, top: stadiumBox.bottom + OFFSET }, // below label
+            { left: pos.left, top: stadiumBox.top - OFFSET - CARD_HEIGHT_ESTIMATE }, // above label
+            { left: stadiumBox.right + OFFSET, top: pos.top }, // right of label
+            { left: stadiumBox.left - OFFSET - CARD_WIDTH, top: pos.top }, // left of label
+          ];
+          const fitsContainer = (p: { left: number; top: number }) =>
+            p.left >= 0 &&
+            p.top >= 0 &&
+            p.left + CARD_WIDTH <= containerWidth &&
+            p.top + CARD_HEIGHT_ESTIMATE <= containerHeight;
+
+          const clear = candidates.find((c) => fitsContainer(c) && !overlaps(c));
+          pos = clear ?? pos;
+        }
+      }
+    }
+
+    return {
+      left: clamp(pos.left, containerWidth - CARD_WIDTH),
+      top: clamp(pos.top, containerHeight - CARD_HEIGHT_ESTIMATE),
     };
   }, [cursor]);
 
