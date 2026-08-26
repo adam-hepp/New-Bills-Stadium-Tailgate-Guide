@@ -3,6 +3,7 @@
     {
       "id": "wings-lot",
       "name": "Wings Lot",
+      "address": "3964 California Rd, Orchard Park, NY 14127",
       "polygon_coordinates": [
         [42.77667, -78.77864],
         [42.77667, -78.78211],
@@ -21,6 +22,7 @@
     {
       "id": "grass-lot",
       "name": "Grass Lot",
+      "address": "3827 Southwestern Blvd, Orchard Park, NY 14127",
       "polygon_coordinates": [
         [42.77983, -78.78336],
         [42.77914, -78.78669],
@@ -39,6 +41,7 @@
     {
       "id": "twin-oaks",
       "name": "Twin Oaks",
+      "address": "3949 Southwestern Blvd, Orchard Park, NY 14127",
       "polygon_coordinates": [
         [42.77622, -78.79411],
         [42.77611, -78.79453],
@@ -57,6 +60,7 @@
     {
       "id": "dannys-south",
       "name": "Danny's South",
+      "address": "4300 Abbott Rd, Orchard Park, NY 14127",
       "polygon_coordinates": [
         [42.76711, -78.79225],
         [42.76739, -78.79347],
@@ -75,6 +79,7 @@
     {
       "id": "hammers",
       "name": "Hammers",
+      "address": "4170 Abbott Rd, Orchard Park, NY 14127",
       "polygon_coordinates": [
         [42.77025, -78.79086],
         [42.77036, -78.79178],
@@ -93,6 +98,7 @@
     {
       "id": "california-lot",
       "name": "California Lot",
+      "address": "3785 Southwestern Blvd, Orchard Park, NY 14127",
       "polygon_coordinates": [
         [42.78100, -78.78225],
         [42.78047, -78.78353],
@@ -111,6 +117,7 @@
     {
       "id": "mikes-lot",
       "name": "Mike's Lot",
+      "address": "3860 California Rd, Orchard Park, NY 14127",
       "polygon_coordinates": [
         [42.78014, -78.78131],
         [42.77992, -78.78194],
@@ -130,6 +137,7 @@
     {
       "id": "kk-lot",
       "name": "KK Lot",
+      "address": "3846 Southwestern Blvd, Orchard Park, NY 14127",
       "polygon_coordinates": [
         [42.77994, -78.78953],
         [42.77986, -78.78594],
@@ -147,6 +155,7 @@
     {
       "id": "la-galleria-lot",
       "name": "La Galleria",
+      "address": "3923 Southwestern Blvd, Orchard Park, NY 14127",
       "polygon_coordinates": [
         [42.77650, -78.79319],
         [42.77622, -78.79397],
@@ -165,6 +174,7 @@
     {
       "id": "kettles-lot",
       "name": "Kettle's",
+      "address": "3719 Abbott Rd, Orchard Park, NY 14127",
       "polygon_coordinates": [
         [42.78283, -78.78900],
         [42.78278, -78.78994],
@@ -183,6 +193,7 @@
     {
       "id": "red-carpet-inn",
       "name": "Red Carpet Inn",
+      "address": "3940 Southwestern Blvd, Orchard Park, NY 14127",
       "polygon_coordinates": [
         [42.77742, -78.79347],
         [42.77719, -78.79439],
@@ -201,6 +212,7 @@
     {
       "id": "yellow-brick-lot-3",
       "name": "Yellow Brick Lot 3",
+      "address": "5240 Big Tree Rd, Orchard Park, NY 14127",
       "polygon_coordinates": [
         [42.76733, -78.78925],
         [42.76739, -78.78972],
