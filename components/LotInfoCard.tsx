@@ -41,6 +41,7 @@ export default function LotInfoCard({ lot }: Props) {
             {CURRENT_SEASON} Season Verified
           </div>
         )}
+        <Row label="Address" value={lot.address ?? "Not yet listed"} />
         <Row label="Walk to stadium" value={`${lot.walk_minutes} min walk`} />
         <Row
           label="Payment"
