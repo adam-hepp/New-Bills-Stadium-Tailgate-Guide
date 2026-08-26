@@ -50,6 +50,7 @@ export default function LotInfoCard({ lot }: Props) {
               : "Not yet listed"
           }
         />
+        <Row label="Address" value={lot.address ?? "Not yet listed"} />
 
         {lot.amenities.length > 0 && (
           <div>

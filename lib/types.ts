@@ -48,6 +48,10 @@ export interface PrivateLot {
   // Public-facing display name, as the lot owner advertises it.
   name: string;
 
+  // Street address for the hover card. Optional since not every seeded lot
+  // has one confirmed yet — shown as "Not yet listed" when omitted.
+  address?: string;
+
   // Ordered [lat, lng] points outlining the lot on the satellite map.
   // Admin-controlled only — not user-submittable.
   polygon_coordinates: Polygon;
