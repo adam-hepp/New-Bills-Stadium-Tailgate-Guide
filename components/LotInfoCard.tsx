@@ -8,12 +8,9 @@ interface Props {
   lot: PrivateLot;
 }
 
-// NOTE: This is the Epic 3 stub — it renders the MVP schema so the data store
-// is provably wired to the map. The Bills-colors visual rebuild (navy bg,
-// white text, red accents) happens in Epic 2.
 export default function LotInfoCard({ lot }: Props) {
   return (
-    <div className="w-80 rounded-lg bg-white shadow-2xl ring-1 ring-black/10 overflow-hidden">
+    <div className="w-80 rounded-lg bg-white shadow-2xl ring-1 ring-bills-red/20 overflow-hidden">
       <div className="bg-bills-blue px-4 py-3">
         <div className="flex items-baseline justify-between gap-3">
           <h3 className="text-white font-semibold text-base leading-tight">
@@ -56,7 +53,7 @@ export default function LotInfoCard({ lot }: Props) {
 
         {lot.amenities.length > 0 && (
           <div>
-            <div className="text-xs uppercase tracking-wide text-slate-500 mb-1">
+            <div className="text-xs uppercase tracking-wide text-bills-red mb-1">
               Amenities
             </div>
             <ul className="grid grid-cols-2 gap-x-2 gap-y-0.5 text-xs">
@@ -71,7 +68,7 @@ export default function LotInfoCard({ lot }: Props) {
         )}
       </div>
 
-      <div className="bg-slate-50 px-4 py-2 text-xs text-slate-500 border-t border-slate-100 text-right">
+      <div className="bg-slate-50 px-4 py-2 text-xs text-slate-500 border-t border-bills-red/20 text-right">
         Updated {formatLastUpdated(lot.last_updated)}
       </div>
     </div>
@@ -81,7 +78,7 @@ export default function LotInfoCard({ lot }: Props) {
 function Row({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-baseline justify-between gap-3">
-      <span className="text-xs uppercase tracking-wide text-slate-500">
+      <span className="text-xs uppercase tracking-wide text-bills-red">
         {label}
       </span>
       <span className="text-sm text-slate-800 text-right">{value}</span>
