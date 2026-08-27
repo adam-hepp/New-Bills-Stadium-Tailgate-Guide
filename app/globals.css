@@ -35,6 +35,54 @@ body {
   outline: none;
 }
 
+/* Dual-handle range slider (KAN-31): two overlapping native <input
+   type="range"> elements stacked on the same track. Only each input's own
+   thumb is clickable — the input itself is pointer-events: none — so the
+   two handles never fight over drag events. */
+.dual-range-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: transparent;
+  pointer-events: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.dual-range-input::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+.dual-range-input::-moz-range-track {
+  background: transparent;
+}
+
+.dual-range-input::-webkit-slider-thumb {
+  pointer-events: auto;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #00338d; /* Bills navy */
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.dual-range-input::-moz-range-thumb {
+  pointer-events: auto;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #00338d;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
 /* Always-visible price label centered on each private lot.
    pointer-events: none lets polygon hover pass through. */
 .price-tab {
