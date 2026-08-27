@@ -5,7 +5,7 @@ import { MapContainer, Marker, Polygon, TileLayer } from "react-leaflet";
 import L from "leaflet";
 
 import lotsData from "@/data/lots.json";
-import type { LatLng, LotData, PrivateLot } from "@/lib/types";
+import type { LatLng, LotData, PaymentMethod, PrivateLot } from "@/lib/types";
 import LotInfoCard from "./LotInfoCard";
 import Legend from "./Legend";
 import FilterBar from "./FilterBar";
@@ -89,8 +89,19 @@ export default function MapView() {
   const [cursor, setCursor] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [priceRange, setPriceRange] = useState<[number, number]>(PRICE_BOUNDS);
   const [walkRange, setWalkRange] = useState<[number, number]>(WALK_BOUNDS);
+  const [selectedPaymentMethods, setSelectedPaymentMethods] = useState<PaymentMethod[]>([]);
 
-  // AC6: a lot must fall within both ranges simultaneously to stay visible.
+  const togglePaymentMethod = (method: PaymentMethod) => {
+    setSelectedPaymentMethods((current) =>
+      current.includes(method) ? current.filter((m) => m !== method) : [...current, method]
+    );
+  };
+
+  // KAN-31 AC6 / KAN-32 AC3: a lot must fall within both ranges AND (when any
+  // payment method is selected) accept at least one of them, simultaneously.
+  // A lot with no payment methods listed can't match a positive selection
+  // (KAN-32 AC4) — it's only excluded once a filter is actually active, so
+  // "not yet listed" lots still show by default.
   const filteredLots = useMemo(
     () =>
       liveLots.filter(
@@ -98,9 +109,11 @@ export default function MapView() {
           lot.price_usd >= priceRange[0] &&
           lot.price_usd <= priceRange[1] &&
           lot.walk_minutes >= walkRange[0] &&
-          lot.walk_minutes <= walkRange[1]
+          lot.walk_minutes <= walkRange[1] &&
+          (selectedPaymentMethods.length === 0 ||
+            lot.payment_methods.some((m) => selectedPaymentMethods.includes(m)))
       ),
-    [priceRange, walkRange]
+    [priceRange, walkRange, selectedPaymentMethods]
   );
 
   // If the hovered lot gets filtered out from under the cursor, its polygon
@@ -221,6 +234,8 @@ export default function MapView() {
         walkBounds={WALK_BOUNDS}
         walkRange={walkRange}
         onWalkRangeChange={setWalkRange}
+        selectedPaymentMethods={selectedPaymentMethods}
+        onTogglePaymentMethod={togglePaymentMethod}
       />
 
       <div

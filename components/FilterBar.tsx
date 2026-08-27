@@ -1,6 +1,14 @@
 "use client";
 
+import type { PaymentMethod } from "@/lib/types";
+import { paymentLabels } from "@/lib/labels";
 import DualRangeSlider from "./DualRangeSlider";
+import FilterToggle from "./FilterToggle";
+
+// KAN-32: only these three are offered as filter toggles, by request — not
+// the full PaymentMethod union (zelle/paypal/apple_pay stay valid lot data,
+// just aren't surfaced as filter options here).
+const FILTERABLE_PAYMENT_METHODS: PaymentMethod[] = ["cash", "venmo", "card"];
 
 interface Props {
   priceBounds: [number, number];
@@ -9,6 +17,8 @@ interface Props {
   walkBounds: [number, number];
   walkRange: [number, number];
   onWalkRangeChange: (range: [number, number]) => void;
+  selectedPaymentMethods: PaymentMethod[];
+  onTogglePaymentMethod: (method: PaymentMethod) => void;
 }
 
 export default function FilterBar({
@@ -18,6 +28,8 @@ export default function FilterBar({
   walkBounds,
   walkRange,
   onWalkRangeChange,
+  selectedPaymentMethods,
+  onTogglePaymentMethod,
 }: Props) {
   return (
     <div className="bg-bills-blue px-4 py-3 flex flex-wrap gap-x-10 gap-y-3 shadow-lg">
@@ -53,6 +65,22 @@ export default function FilterBar({
           value={walkRange}
           onChange={onWalkRangeChange}
         />
+      </div>
+
+      <div className="flex-1 min-w-[240px]">
+        <div className="text-xs uppercase tracking-wide text-white/80 mb-1.5">
+          Payment
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {FILTERABLE_PAYMENT_METHODS.map((method) => (
+            <FilterToggle
+              key={method}
+              label={paymentLabels[method]}
+              active={selectedPaymentMethods.includes(method)}
+              onToggle={() => onTogglePaymentMethod(method)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
