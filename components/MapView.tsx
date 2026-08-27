@@ -20,7 +20,12 @@ function polygonCentroid(points: LatLng[]): LatLng {
 // New Highmark Stadium (under construction, opening 2026 season).
 // Across Abbott Rd from the old stadium.
 const STADIUM_CENTER: [number, number] = [42.77350, -78.79222];
-const DEFAULT_ZOOM = 17;
+
+// Initial map view — centered on the bounding box of all seeded lots (not
+// the stadium itself) and zoomed out enough that most lots are visible on
+// first load, so fans get oriented before having to pan/zoom themselves.
+const DEFAULT_VIEW_CENTER: [number, number] = [42.77485, -78.78663];
+const DEFAULT_ZOOM = 15;
 
 // Mapbox Satellite Streets gives us proper labels designed for satellite
 // imagery — no more hand-placed road markers. Token set via
@@ -175,7 +180,7 @@ export default function MapView() {
       onMouseMove={handleMouseMove}
     >
       <MapContainer
-        center={STADIUM_CENTER}
+        center={DEFAULT_VIEW_CENTER}
         zoom={DEFAULT_ZOOM}
         scrollWheelZoom={true}
         className="w-full h-full"
