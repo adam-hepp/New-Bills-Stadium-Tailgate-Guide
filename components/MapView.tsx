@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { MapContainer, Marker, Polygon, TileLayer } from "react-leaflet";
 import L from "leaflet";
 
@@ -8,6 +8,7 @@ import lotsData from "@/data/lots.json";
 import type { LatLng, LotData, PrivateLot } from "@/lib/types";
 import LotInfoCard from "./LotInfoCard";
 import Legend from "./Legend";
+import FilterBar from "./FilterBar";
 
 // Average of polygon vertices. Works for the roughly-rectangular tailgate lots
 // in our seed data; if a lot is heavily concave we'd switch to a manual anchor.
@@ -71,10 +72,45 @@ const data = lotsData as unknown as LotData;
 // "archived" are admin-facing workflow states, not visible to fans.
 const liveLots = data.private_lots.filter((lot) => lot.status === "live");
 
+// Filter slider bounds (KAN-31 AC5) — derived from the actual live-lot
+// dataset rather than hardcoded, so they stay correct as lots are added.
+const PRICE_BOUNDS: [number, number] = [
+  Math.min(...liveLots.map((lot) => lot.price_usd)),
+  Math.max(...liveLots.map((lot) => lot.price_usd)),
+];
+const WALK_BOUNDS: [number, number] = [
+  Math.min(...liveLots.map((lot) => lot.walk_minutes)),
+  Math.max(...liveLots.map((lot) => lot.walk_minutes)),
+];
+
 export default function MapView() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredLot, setHoveredLot] = useState<PrivateLot | null>(null);
   const [cursor, setCursor] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [priceRange, setPriceRange] = useState<[number, number]>(PRICE_BOUNDS);
+  const [walkRange, setWalkRange] = useState<[number, number]>(WALK_BOUNDS);
+
+  // AC6: a lot must fall within both ranges simultaneously to stay visible.
+  const filteredLots = useMemo(
+    () =>
+      liveLots.filter(
+        (lot) =>
+          lot.price_usd >= priceRange[0] &&
+          lot.price_usd <= priceRange[1] &&
+          lot.walk_minutes >= walkRange[0] &&
+          lot.walk_minutes <= walkRange[1]
+      ),
+    [priceRange, walkRange]
+  );
+
+  // If the hovered lot gets filtered out from under the cursor, its polygon
+  // unmounts without ever firing mouseout — clear the orphaned card instead
+  // of leaving it floating with nothing underneath.
+  useEffect(() => {
+    if (hoveredLot && !filteredLots.some((lot) => lot.id === hoveredLot.id)) {
+      setHoveredLot(null);
+    }
+  }, [filteredLots, hoveredLot]);
 
   const stadiumIcon = useMemo(
     () =>
@@ -174,93 +210,107 @@ export default function MapView() {
   }, [cursor]);
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full h-full"
-      onMouseMove={handleMouseMove}
-    >
-      <MapContainer
-        center={DEFAULT_VIEW_CENTER}
-        zoom={DEFAULT_ZOOM}
-        scrollWheelZoom={true}
-        className="w-full h-full"
+    <div className="relative w-full h-full flex flex-col">
+      {/* Normal document flow, not an overlay — an absolutely-positioned bar
+          here would sit on top of and hide Leaflet's zoom controls, which
+          also claim the top-left corner. */}
+      <FilterBar
+        priceBounds={PRICE_BOUNDS}
+        priceRange={priceRange}
+        onPriceRangeChange={setPriceRange}
+        walkBounds={WALK_BOUNDS}
+        walkRange={walkRange}
+        onWalkRangeChange={setWalkRange}
+      />
+
+      <div
+        ref={containerRef}
+        className="relative flex-1"
+        onMouseMove={handleMouseMove}
       >
-        {MAPBOX_TOKEN ? (
-          <TileLayer
-            attribution='&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url={`https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/tiles/512/{z}/{x}/{y}@2x?access_token=${MAPBOX_TOKEN}`}
-            tileSize={512}
-            zoomOffset={-1}
-            maxZoom={19}
-          />
-        ) : (
-          // Fallback when NEXT_PUBLIC_MAPBOX_TOKEN isn't set — free, keyless
-          // Esri satellite imagery with a road-labels overlay stacked on top
-          // (KAN-28), so street names show without requiring any account.
-          <>
+        <MapContainer
+          center={DEFAULT_VIEW_CENTER}
+          zoom={DEFAULT_ZOOM}
+          scrollWheelZoom={true}
+          className="w-full h-full"
+        >
+          {MAPBOX_TOKEN ? (
             <TileLayer
-              attribution='Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
-              url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+              attribution='&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url={`https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/tiles/512/{z}/{x}/{y}@2x?access_token=${MAPBOX_TOKEN}`}
+              tileSize={512}
+              zoomOffset={-1}
               maxZoom={19}
             />
-            <TileLayer
-              attribution='Labels &copy; Esri'
-              url="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}"
-              maxZoom={19}
-            />
-          </>
-        )}
+          ) : (
+            // Fallback when NEXT_PUBLIC_MAPBOX_TOKEN isn't set — free, keyless
+            // Esri satellite imagery with a road-labels overlay stacked on top
+            // (KAN-28), so street names show without requiring any account.
+            <>
+              <TileLayer
+                attribution='Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
+                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                maxZoom={19}
+              />
+              <TileLayer
+                attribution='Labels &copy; Esri'
+                url="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}"
+                maxZoom={19}
+              />
+            </>
+          )}
 
-        {data.stadium_lots.map((lot) => (
-          <Polygon
-            key={lot.id}
-            positions={lot.polygon_coordinates}
-            pathOptions={STADIUM_STYLE}
-            interactive={false}
-          />
-        ))}
-
-        {liveLots.map((lot) => {
-          const isHovered = hoveredLot?.id === lot.id;
-          return (
+          {data.stadium_lots.map((lot) => (
             <Polygon
               key={lot.id}
               positions={lot.polygon_coordinates}
-              pathOptions={isHovered ? PRIVATE_HOVER_STYLE : PRIVATE_STYLE}
-              eventHandlers={{
-                mouseover: () => setHoveredLot(lot),
-                mouseout: () => setHoveredLot(null),
-              }}
-            />
-          );
-        })}
-
-        {liveLots.map((lot) => {
-          const icon = priceIcons.get(lot.id);
-          if (!icon) return null;
-          return (
-            <Marker
-              key={`price-${lot.id}`}
-              position={lot.label_anchor ?? polygonCentroid(lot.polygon_coordinates)}
-              icon={icon}
+              pathOptions={STADIUM_STYLE}
               interactive={false}
             />
-          );
-        })}
+          ))}
 
-        <Marker position={STADIUM_CENTER} icon={stadiumIcon} interactive={false} />
-      </MapContainer>
+          {filteredLots.map((lot) => {
+            const isHovered = hoveredLot?.id === lot.id;
+            return (
+              <Polygon
+                key={lot.id}
+                positions={lot.polygon_coordinates}
+                pathOptions={isHovered ? PRIVATE_HOVER_STYLE : PRIVATE_STYLE}
+                eventHandlers={{
+                  mouseover: () => setHoveredLot(lot),
+                  mouseout: () => setHoveredLot(null),
+                }}
+              />
+            );
+          })}
 
-      <Legend />
+          {filteredLots.map((lot) => {
+            const icon = priceIcons.get(lot.id);
+            if (!icon) return null;
+            return (
+              <Marker
+                key={`price-${lot.id}`}
+                position={lot.label_anchor ?? polygonCentroid(lot.polygon_coordinates)}
+                icon={icon}
+                interactive={false}
+              />
+            );
+          })}
 
-      {hoveredLot && (
-        <div
-          className="absolute pointer-events-none z-[1000]"
-          style={{ left: cardPosition.left, top: cardPosition.top }}
-        >
-          <LotInfoCard lot={hoveredLot} />
-        </div>
-      )}
+          <Marker position={STADIUM_CENTER} icon={stadiumIcon} interactive={false} />
+        </MapContainer>
+
+        <Legend />
+
+        {hoveredLot && (
+          <div
+            className="absolute pointer-events-none z-[1000]"
+            style={{ left: cardPosition.left, top: cardPosition.top }}
+          >
+            <LotInfoCard lot={hoveredLot} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
