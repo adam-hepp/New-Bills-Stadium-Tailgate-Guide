@@ -1,5 +1,6 @@
 "use client";
 
+import { CURRENT_SEASON } from "@/lib/types";
 import type { PaymentMethod } from "@/lib/types";
 import { paymentLabels } from "@/lib/labels";
 import DualRangeSlider from "./DualRangeSlider";
@@ -19,6 +20,8 @@ interface Props {
   onWalkRangeChange: (range: [number, number]) => void;
   selectedPaymentMethods: PaymentMethod[];
   onTogglePaymentMethod: (method: PaymentMethod) => void;
+  verifiedOnly: boolean;
+  onToggleVerifiedOnly: () => void;
 }
 
 export default function FilterBar({
@@ -30,6 +33,8 @@ export default function FilterBar({
   onWalkRangeChange,
   selectedPaymentMethods,
   onTogglePaymentMethod,
+  verifiedOnly,
+  onToggleVerifiedOnly,
 }: Props) {
   return (
     <div className="bg-bills-blue px-4 py-3 flex flex-wrap gap-x-10 gap-y-3 shadow-lg">
@@ -81,6 +86,17 @@ export default function FilterBar({
             />
           ))}
         </div>
+      </div>
+
+      <div className="flex-1 min-w-[160px]">
+        <div className="text-xs uppercase tracking-wide text-white/80 mb-1.5">
+          Verified
+        </div>
+        <FilterToggle
+          label={`${CURRENT_SEASON} Season Verified`}
+          active={verifiedOnly}
+          onToggle={onToggleVerifiedOnly}
+        />
       </div>
     </div>
   );
