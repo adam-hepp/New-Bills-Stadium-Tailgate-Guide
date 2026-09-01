@@ -1,8 +1,8 @@
 "use client";
 
 import { CURRENT_SEASON } from "@/lib/types";
-import type { PaymentMethod } from "@/lib/types";
-import { paymentLabels } from "@/lib/labels";
+import type { Amenity, PaymentMethod } from "@/lib/types";
+import { amenityLabels, paymentLabels } from "@/lib/labels";
 import DualRangeSlider from "./DualRangeSlider";
 import FilterToggle from "./FilterToggle";
 
@@ -22,6 +22,9 @@ interface Props {
   onTogglePaymentMethod: (method: PaymentMethod) => void;
   verifiedOnly: boolean;
   onToggleVerifiedOnly: () => void;
+  amenityOptions: Amenity[];
+  selectedAmenities: Amenity[];
+  onToggleAmenity: (amenity: Amenity) => void;
   hasActiveFilters: boolean;
   onClearFilters: () => void;
 }
@@ -37,6 +40,9 @@ export default function FilterBar({
   onTogglePaymentMethod,
   verifiedOnly,
   onToggleVerifiedOnly,
+  amenityOptions,
+  selectedAmenities,
+  onToggleAmenity,
   hasActiveFilters,
   onClearFilters,
 }: Props) {
@@ -102,6 +108,24 @@ export default function FilterBar({
           onToggle={onToggleVerifiedOnly}
         />
       </div>
+
+      {amenityOptions.length > 0 && (
+        <div className="flex-1 min-w-[240px]">
+          <div className="text-xs uppercase tracking-wide text-white/80 mb-1.5">
+            Amenities
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {amenityOptions.map((amenity) => (
+              <FilterToggle
+                key={amenity}
+                label={amenityLabels[amenity]}
+                active={selectedAmenities.includes(amenity)}
+                onToggle={() => onToggleAmenity(amenity)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="flex items-end">
         <button
