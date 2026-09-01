@@ -99,6 +99,23 @@ export default function MapView() {
     );
   };
 
+  // KAN-34 AC4: whether any filter currently differs from its default state.
+  const hasActiveFilters =
+    priceRange[0] !== PRICE_BOUNDS[0] ||
+    priceRange[1] !== PRICE_BOUNDS[1] ||
+    walkRange[0] !== WALK_BOUNDS[0] ||
+    walkRange[1] !== WALK_BOUNDS[1] ||
+    selectedPaymentMethods.length > 0 ||
+    verifiedOnly;
+
+  // KAN-34 AC2: reset every filter back to its default in one click.
+  const clearFilters = () => {
+    setPriceRange(PRICE_BOUNDS);
+    setWalkRange(WALK_BOUNDS);
+    setSelectedPaymentMethods([]);
+    setVerifiedOnly(false);
+  };
+
   // KAN-31 AC6 / KAN-32 AC3 / KAN-33 AC3: a lot must fall within both ranges,
   // accept at least one selected payment method (if any are selected), and
   // be season-verified (if that toggle is on) — all simultaneously.
@@ -242,6 +259,8 @@ export default function MapView() {
         onTogglePaymentMethod={togglePaymentMethod}
         verifiedOnly={verifiedOnly}
         onToggleVerifiedOnly={() => setVerifiedOnly((v) => !v)}
+        hasActiveFilters={hasActiveFilters}
+        onClearFilters={clearFilters}
       />
 
       <div

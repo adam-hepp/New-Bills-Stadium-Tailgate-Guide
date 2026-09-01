@@ -22,6 +22,8 @@ interface Props {
   onTogglePaymentMethod: (method: PaymentMethod) => void;
   verifiedOnly: boolean;
   onToggleVerifiedOnly: () => void;
+  hasActiveFilters: boolean;
+  onClearFilters: () => void;
 }
 
 export default function FilterBar({
@@ -35,6 +37,8 @@ export default function FilterBar({
   onTogglePaymentMethod,
   verifiedOnly,
   onToggleVerifiedOnly,
+  hasActiveFilters,
+  onClearFilters,
 }: Props) {
   return (
     <div className="bg-bills-blue px-4 py-3 flex flex-wrap gap-x-10 gap-y-3 shadow-lg">
@@ -97,6 +101,17 @@ export default function FilterBar({
           active={verifiedOnly}
           onToggle={onToggleVerifiedOnly}
         />
+      </div>
+
+      <div className="flex items-end">
+        <button
+          type="button"
+          onClick={onClearFilters}
+          disabled={!hasActiveFilters}
+          className="rounded-full px-3 py-1 text-xs font-semibold border border-white/30 text-white/80 hover:border-white/60 hover:text-white transition-colors disabled:opacity-40 disabled:pointer-events-none"
+        >
+          Clear filters
+        </button>
       </div>
     </div>
   );
