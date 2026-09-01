@@ -6,7 +6,7 @@ import L from "leaflet";
 
 import lotsData from "@/data/lots.json";
 import { CURRENT_SEASON } from "@/lib/types";
-import type { LatLng, LotData, PaymentMethod, PrivateLot } from "@/lib/types";
+import type { Amenity, LatLng, LotData, PaymentMethod, PrivateLot } from "@/lib/types";
 import LotInfoCard from "./LotInfoCard";
 import Legend from "./Legend";
 import FilterBar from "./FilterBar";
@@ -84,6 +84,13 @@ const WALK_BOUNDS: [number, number] = [
   Math.max(...liveLots.map((lot) => lot.walk_minutes)),
 ];
 
+// KAN-35 AC1: only amenities at least one live lot actually has, derived
+// from the data rather than the full 10-value Amenity schema, so the bar
+// doesn't offer toggles that would always return zero results.
+const AMENITY_OPTIONS = Array.from(
+  new Set(liveLots.flatMap((lot) => lot.amenities))
+) as Amenity[];
+
 export default function MapView() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredLot, setHoveredLot] = useState<PrivateLot | null>(null);
@@ -92,10 +99,17 @@ export default function MapView() {
   const [walkRange, setWalkRange] = useState<[number, number]>(WALK_BOUNDS);
   const [selectedPaymentMethods, setSelectedPaymentMethods] = useState<PaymentMethod[]>([]);
   const [verifiedOnly, setVerifiedOnly] = useState(false);
+  const [selectedAmenities, setSelectedAmenities] = useState<Amenity[]>([]);
 
   const togglePaymentMethod = (method: PaymentMethod) => {
     setSelectedPaymentMethods((current) =>
       current.includes(method) ? current.filter((m) => m !== method) : [...current, method]
+    );
+  };
+
+  const toggleAmenity = (amenity: Amenity) => {
+    setSelectedAmenities((current) =>
+      current.includes(amenity) ? current.filter((a) => a !== amenity) : [...current, amenity]
     );
   };
 
@@ -106,7 +120,8 @@ export default function MapView() {
     walkRange[0] !== WALK_BOUNDS[0] ||
     walkRange[1] !== WALK_BOUNDS[1] ||
     selectedPaymentMethods.length > 0 ||
-    verifiedOnly;
+    verifiedOnly ||
+    selectedAmenities.length > 0;
 
   // KAN-34 AC2: reset every filter back to its default in one click.
   const clearFilters = () => {
@@ -114,14 +129,16 @@ export default function MapView() {
     setWalkRange(WALK_BOUNDS);
     setSelectedPaymentMethods([]);
     setVerifiedOnly(false);
+    setSelectedAmenities([]);
   };
 
-  // KAN-31 AC6 / KAN-32 AC3 / KAN-33 AC3: a lot must fall within both ranges,
-  // accept at least one selected payment method (if any are selected), and
-  // be season-verified (if that toggle is on) — all simultaneously.
-  // A lot with no payment methods listed can't match a positive selection
-  // (KAN-32 AC4) — it's only excluded once a filter is actually active, so
-  // "not yet listed" lots still show by default.
+  // KAN-31 AC6 / KAN-32 AC3 / KAN-33 AC3 / KAN-35 AC4: a lot must fall within
+  // both ranges, accept at least one selected payment method (if any are
+  // selected), be season-verified (if that toggle is on), and have ALL
+  // selected amenities (if any) — all simultaneously. A lot with no payment
+  // methods listed can't match a positive selection (KAN-32 AC4); same for
+  // amenities (KAN-35 AC5) — both are only excluded once that filter is
+  // actually active, so "not yet listed" lots still show by default.
   const filteredLots = useMemo(
     () =>
       liveLots.filter(
@@ -132,9 +149,10 @@ export default function MapView() {
           lot.walk_minutes <= walkRange[1] &&
           (selectedPaymentMethods.length === 0 ||
             lot.payment_methods.some((m) => selectedPaymentMethods.includes(m))) &&
-          (!verifiedOnly || lot.verified_for_season === CURRENT_SEASON)
+          (!verifiedOnly || lot.verified_for_season === CURRENT_SEASON) &&
+          selectedAmenities.every((a) => lot.amenities.includes(a))
       ),
-    [priceRange, walkRange, selectedPaymentMethods, verifiedOnly]
+    [priceRange, walkRange, selectedPaymentMethods, verifiedOnly, selectedAmenities]
   );
 
   // If the hovered lot gets filtered out from under the cursor, its polygon
@@ -259,6 +277,9 @@ export default function MapView() {
         onTogglePaymentMethod={togglePaymentMethod}
         verifiedOnly={verifiedOnly}
         onToggleVerifiedOnly={() => setVerifiedOnly((v) => !v)}
+        amenityOptions={AMENITY_OPTIONS}
+        selectedAmenities={selectedAmenities}
+        onToggleAmenity={toggleAmenity}
         hasActiveFilters={hasActiveFilters}
         onClearFilters={clearFilters}
       />
