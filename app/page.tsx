@@ -4,8 +4,10 @@ import { useState } from "react";
 import MapClient from "@/components/MapClient";
 import SuggestLotModal from "@/components/SuggestLotModal";
 
+type ModalType = "new_lot" | "correction" | null;
+
 export default function Home() {
-  const [showSuggestForm, setShowSuggestForm] = useState(false);
+  const [modalType, setModalType] = useState<ModalType>(null);
 
   return (
     <main className="h-screen w-screen flex flex-col bg-slate-900">
@@ -21,10 +23,17 @@ export default function Home() {
         <div className="flex items-center gap-4">
           <button
             type="button"
-            onClick={() => setShowSuggestForm(true)}
+            onClick={() => setModalType("correction")}
+            className="rounded-md border border-slate-600 px-3 py-1.5 text-xs font-semibold text-slate-200 hover:border-slate-400"
+          >
+            Report an Issue
+          </button>
+          <button
+            type="button"
+            onClick={() => setModalType("new_lot")}
             className="rounded-md bg-bills-red px-3 py-1.5 text-xs font-semibold text-white hover:bg-bills-red/90"
           >
-            Suggest a Lot
+            Add a Lot
           </button>
           <div className="text-[11px] text-slate-500">
             POC · Data is illustrative, not verified
@@ -36,7 +45,9 @@ export default function Home() {
         <MapClient />
       </div>
 
-      {showSuggestForm && <SuggestLotModal onClose={() => setShowSuggestForm(false)} />}
+      {modalType && (
+        <SuggestLotModal initialType={modalType} onClose={() => setModalType(null)} />
+      )}
     </main>
   );
 }
