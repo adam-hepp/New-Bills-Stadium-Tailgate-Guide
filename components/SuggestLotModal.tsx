@@ -8,6 +8,13 @@ import { amenityLabels, paymentLabels } from "@/lib/labels";
 const data = lotsData as unknown as LotData;
 const existingLots = data.private_lots.filter((lot) => lot.status === "live");
 
+// Formspree delivers the submission to the site owner's Gmail with zero
+// backend of our own (KAN-19). Set in .env.local — see README. A public
+// form endpoint isn't a secret (Formspree's spam protection doesn't rely on
+// keeping it hidden), so NEXT_PUBLIC_ is appropriate here, same as the
+// Mapbox token.
+const FORMSPREE_ENDPOINT = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
+
 type SubmissionType = "new_lot" | "correction";
 
 interface FormState {
@@ -41,6 +48,8 @@ export default function SuggestLotModal({ onClose }: Props) {
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -67,17 +76,62 @@ export default function SuggestLotModal({ onClose }: Props) {
     return next;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const nextErrors = validate();
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
 
-    // TODO(KAN-19): actually deliver this submission (emailed to a dedicated
-    // Gmail account for review). KAN-18 covers the form UI, validation, and
-    // confirmation experience only — delivery is a separate story.
-    console.log("Lot submission (pending review, KAN-19 delivery not yet wired up):", form);
-    setSubmitted(true);
+    setSubmitError(null);
+
+    if (!FORMSPREE_ENDPOINT) {
+      setSubmitError(
+        "Submissions aren't configured yet — NEXT_PUBLIC_FORMSPREE_ENDPOINT is unset. See README."
+      );
+      return;
+    }
+
+    // AC2: email contains submission type, lot name/location for new lots,
+    // or the corrected fields for an existing lot.
+    const payload: Record<string, string> = {
+      submission_type: form.type === "new_lot" ? "New lot request" : "Correction to existing lot",
+      _subject:
+        form.type === "new_lot"
+          ? `Bills Tailgate Map: new lot suggestion — ${form.name}`
+          : "Bills Tailgate Map: lot correction suggestion",
+    };
+
+    if (form.type === "new_lot") {
+      payload.lot_name = form.name;
+      payload.approximate_location = form.approximateLocation;
+    } else {
+      const existingLot = existingLots.find((lot) => lot.id === form.existingLotId);
+      payload.existing_lot = existingLot?.name ?? form.existingLotId;
+      if (form.price.trim()) payload.corrected_price = `$${form.price}`;
+      if (form.paymentMethods.length > 0) {
+        payload.corrected_payment_methods = form.paymentMethods
+          .map((m) => paymentLabels[m])
+          .join(", ");
+      }
+      if (form.amenities.length > 0) {
+        payload.corrected_amenities = form.amenities.map((a) => amenityLabels[a]).join(", ");
+      }
+    }
+
+    setSubmitting(true);
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error(`Formspree responded ${res.status}`);
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError("Couldn't send your submission — please try again in a moment.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const togglePaymentMethod = (method: PaymentMethod) => {
@@ -242,11 +296,14 @@ export default function SuggestLotModal({ onClose }: Props) {
               </>
             )}
 
+            {submitError && <p className="text-xs text-bills-red">{submitError}</p>}
+
             <button
               type="submit"
-              className="w-full rounded-md bg-bills-red text-white text-sm font-semibold py-2 hover:bg-bills-red/90"
+              disabled={submitting}
+              className="w-full rounded-md bg-bills-red text-white text-sm font-semibold py-2 hover:bg-bills-red/90 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Submit
+              {submitting ? "Sending…" : "Submit"}
             </button>
           </form>
         )}
