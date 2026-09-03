@@ -39,6 +39,29 @@ If `NEXT_PUBLIC_MAPBOX_TOKEN` is unset, the map falls back to bare Esri satellit
 
 Vercel deployment: add the same env var in the Vercel project settings → Environment Variables.
 
+## Lot submissions ("Suggest a Lot")
+
+Fans can suggest a new lot or a correction to an existing one via the "Suggest a Lot" button. The app has no backend of its own — submissions deliver via [Formspree](https://formspree.io), a hosted form-to-email service, straight to a dedicated Gmail account. Setup:
+
+1. Sign up at [formspree.io](https://formspree.io) (free) using the Gmail address that should receive submissions.
+2. Create a new form and copy its endpoint URL (`https://formspree.io/f/xxxxxxxx`).
+3. Add to `.env.local`:
+   ```
+   NEXT_PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/your_form_id
+   ```
+4. Restart `npm run dev`.
+
+If `NEXT_PUBLIC_FORMSPREE_ENDPOINT` is unset, the form shows an error on submit instead of failing silently.
+
+Vercel deployment: add the same env var in the Vercel project settings → Environment Variables.
+
+### Reviewing submissions
+
+There's no admin dashboard or queue — review happens by email, matching how [lot data is already edited directly in GitHub](#editing-lots-without-code):
+
+- **To approve:** open the submission email, then add (or edit) the entry in [`data/lots.json`](data/lots.json) yourself — new lots need polygon coordinates and a manually-verified walk time added by you, since those are never user-submittable (see the MVP schema below). Set `status: "live"` (or `"pending_review"` if you want to sit on it first) and commit. It appears on the map automatically, no other steps.
+- **To reject:** do nothing. Submissions only ever reach your inbox — nothing is written to `data/lots.json` automatically, so an ignored email has zero effect on the live map.
+
 ## Data store
 
 All lot data lives in a single JSON file: [`data/lots.json`](data/lots.json). It's the single source of truth — change the file, redeploy, the map updates.
