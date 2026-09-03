@@ -25,6 +25,7 @@ interface FormState {
   price: string;
   paymentMethods: PaymentMethod[];
   amenities: Amenity[];
+  comments: string;
 }
 
 const EMPTY_FORM: FormState = {
@@ -35,17 +36,21 @@ const EMPTY_FORM: FormState = {
   price: "",
   paymentMethods: [],
   amenities: [],
+  comments: "",
 };
 
 interface Props {
   onClose: () => void;
+  initialType?: SubmissionType;
 }
 
-// AC2/AC3: new-lot requests only take a name + approximate location — walk
-// time and polygon coordinates stay admin-controlled. Corrections only touch
-// price, payment methods, or amenities on an existing live lot.
-export default function SuggestLotModal({ onClose }: Props) {
-  const [form, setForm] = useState<FormState>(EMPTY_FORM);
+// AC2/AC3: new-lot requests take a name, approximate location, and price —
+// walk time and polygon coordinates stay admin-controlled. Corrections only
+// touch price, payment methods, or amenities on an existing live lot.
+// initialType lets the "Report an Issue" entry point open straight to the
+// correction tab instead of "Add a Lot"'s default new-lot tab.
+export default function SuggestLotModal({ onClose, initialType = "new_lot" }: Props) {
+  const [form, setForm] = useState<FormState>({ ...EMPTY_FORM, type: initialType });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -65,12 +70,17 @@ export default function SuggestLotModal({ onClose }: Props) {
       if (!form.name.trim()) next.name = "Lot name is required.";
       if (!form.approximateLocation.trim())
         next.approximateLocation = "Approximate location is required.";
+      if (!form.price.trim()) next.price = "Price is required.";
     } else {
       if (!form.existingLotId) next.existingLotId = "Choose which lot you're correcting.";
       const hasCorrection =
-        form.price.trim() !== "" || form.paymentMethods.length > 0 || form.amenities.length > 0;
+        form.price.trim() !== "" ||
+        form.paymentMethods.length > 0 ||
+        form.amenities.length > 0 ||
+        form.comments.trim() !== "";
       if (!hasCorrection) {
-        next.correction = "Suggest at least one change: price, payment methods, or amenities.";
+        next.correction =
+          "Suggest at least one change: price, payment methods, amenities, or a comment.";
       }
     }
     return next;
@@ -104,6 +114,10 @@ export default function SuggestLotModal({ onClose }: Props) {
     if (form.type === "new_lot") {
       payload.lot_name = form.name;
       payload.approximate_location = form.approximateLocation;
+      payload.price = `$${form.price}`;
+      if (form.paymentMethods.length > 0) {
+        payload.payment_methods = form.paymentMethods.map((m) => paymentLabels[m]).join(", ");
+      }
     } else {
       const existingLot = existingLots.find((lot) => lot.id === form.existingLotId);
       payload.existing_lot = existingLot?.name ?? form.existingLotId;
@@ -117,6 +131,7 @@ export default function SuggestLotModal({ onClose }: Props) {
         payload.corrected_amenities = form.amenities.map((a) => amenityLabels[a]).join(", ");
       }
     }
+    if (form.comments.trim()) payload.comments = form.comments.trim();
 
     setSubmitting(true);
     try {
@@ -166,7 +181,7 @@ export default function SuggestLotModal({ onClose }: Props) {
       >
         <div className="bg-bills-blue px-5 py-4 flex items-center justify-between shrink-0">
           <h2 id="suggest-lot-title" className="text-white font-semibold text-lg">
-            {submitted ? "Thanks!" : "Suggest a Lot"}
+            {submitted ? "Thanks!" : form.type === "new_lot" ? "Add a Lot" : "Report an Issue"}
           </h2>
           <button
             type="button"
@@ -229,6 +244,32 @@ export default function SuggestLotModal({ onClose }: Props) {
                     placeholder="e.g. corner of Southwestern Blvd & Abbott Rd"
                   />
                 </Field>
+                <Field label="Price (per car, per game)" error={errors.price}>
+                  <input
+                    type="number"
+                    min={0}
+                    value={form.price}
+                    onChange={(e) => setForm((f) => ({ ...f, price: e.target.value }))}
+                    className={inputClass(!!errors.price)}
+                    placeholder="e.g. 50"
+                  />
+                </Field>
+
+                <div>
+                  <div className="text-xs uppercase tracking-wide text-slate-500 mb-1.5">
+                    Payment methods accepted
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {(Object.keys(paymentLabels) as PaymentMethod[]).map((method) => (
+                      <Chip
+                        key={method}
+                        label={paymentLabels[method]}
+                        active={form.paymentMethods.includes(method)}
+                        onClick={() => togglePaymentMethod(method)}
+                      />
+                    ))}
+                  </div>
+                </div>
               </>
             ) : (
               <>
@@ -295,6 +336,16 @@ export default function SuggestLotModal({ onClose }: Props) {
                 )}
               </>
             )}
+
+            <Field label="Comments (optional)">
+              <textarea
+                value={form.comments}
+                onChange={(e) => setForm((f) => ({ ...f, comments: e.target.value }))}
+                className={inputClass(false) + " resize-none"}
+                rows={3}
+                placeholder="Anything else we should know?"
+              />
+            </Field>
 
             {submitError && <p className="text-xs text-bills-red">{submitError}</p>}
 
