@@ -163,7 +163,7 @@
         [42.77481, -78.79314]
       ],
       "price_usd": 80,
-      "payment_methods": [],
+      "payment_methods": ["cash"],
       "walk_minutes": 15,
       "amenities": [],
       "last_updated": "2026-09-04",
