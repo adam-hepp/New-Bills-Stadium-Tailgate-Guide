@@ -89,7 +89,7 @@
       "price_usd": 100,
       "payment_methods": ["cash"],
       "walk_minutes": 5,
-      "amenities": [],
+      "amenities": ["porta_potty", "grills_allowed", "generators_allowed", "lights"],
       "last_updated": "2026-09-04",
       "source": "Reddit",
       "status": "live",
