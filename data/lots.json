@@ -549,6 +549,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": 2026
+    },
+    {
+      "id": "big-g",
+      "name": "Big G",
+      "address": "5375 Big Tree Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.76628, -78.78533],
+        [42.76622, -78.78492],
+        [42.76528, -78.78497],
+        [42.76528, -78.78544]
+      ],
+      "price_usd": 60,
+      "payment_methods": ["cash"],
+      "walk_minutes": 17,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
