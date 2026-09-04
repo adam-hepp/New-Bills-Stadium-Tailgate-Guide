@@ -86,11 +86,11 @@
         [42.76997, -78.79189],
         [42.76983, -78.79094]
       ],
-      "price_usd": 70,
+      "price_usd": 100,
       "payment_methods": ["cash"],
       "walk_minutes": 5,
       "amenities": [],
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-09-04",
       "source": "Reddit",
       "status": "live",
       "verified_for_season": null
@@ -143,11 +143,11 @@
         [42.77986, -78.78594],
         [42.77883, -78.78931]
       ],
-      "price_usd": 0,
-      "payment_methods": [],
+      "price_usd": 70,
+      "payment_methods": ["cash"],
       "walk_minutes": 15,
       "amenities": [],
-      "last_updated": "2026-07-03",
+      "last_updated": "2026-09-04",
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
@@ -181,11 +181,11 @@
         [42.78203, -78.78975],
         [42.78200, -78.78897]
       ],
-      "price_usd": 0,
-      "payment_methods": [],
+      "price_usd": 80,
+      "payment_methods": ["cash"],
       "walk_minutes": 16,
       "amenities": [],
-      "last_updated": "2026-07-03",
+      "last_updated": "2026-09-04",
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
@@ -200,11 +200,11 @@
         [42.77656, -78.79439],
         [42.77683, -78.79350]
       ],
-      "price_usd": 0,
-      "payment_methods": [],
+      "price_usd": 80,
+      "payment_methods": ["cash"],
       "walk_minutes": 15,
       "amenities": [],
-      "last_updated": "2026-07-03",
+      "last_updated": "2026-09-04",
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
@@ -278,6 +278,63 @@
       "price_usd": 80,
       "payment_methods": ["cash"],
       "walk_minutes": 12,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
+    },
+    {
+      "id": "oneills",
+      "name": "O'Neill's",
+      "address": "3864 Abbott Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.77753, -78.79053],
+        [42.77781, -78.78964],
+        [42.77681, -78.78950],
+        [42.77681, -78.79050]
+      ],
+      "price_usd": 80,
+      "payment_methods": ["cash"],
+      "walk_minutes": 7,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
+    },
+    {
+      "id": "kanes-stadium-view",
+      "name": "Kane's Stadium View",
+      "address": "3952 Southwestern Blvd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.77703, -78.79508],
+        [42.77708, -78.79478],
+        [42.77642, -78.79483],
+        [42.77631, -78.79511]
+      ],
+      "price_usd": 80,
+      "payment_methods": ["cash"],
+      "walk_minutes": 16,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": 2026
+    },
+    {
+      "id": "meyers-corn-lot",
+      "name": "Meyer's Corn Lot",
+      "address": "4237-4233 California Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.76594, -78.77822],
+        [42.76594, -78.77772],
+        [42.76556, -78.77772],
+        [42.76561, -78.77828]
+      ],
+      "price_usd": 40,
+      "payment_methods": ["cash"],
+      "walk_minutes": 25,
       "amenities": [],
       "last_updated": "2026-09-04",
       "source": "N/A",
