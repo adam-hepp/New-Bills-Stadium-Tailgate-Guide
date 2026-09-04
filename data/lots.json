@@ -530,6 +530,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "5454-big-tree-rd",
+      "name": "5454 Big Tree Rd",
+      "address": "5454 Big Tree Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.76747, -78.78172],
+        [42.76739, -78.78250],
+        [42.76614, -78.78256],
+        [42.76611, -78.78233]
+      ],
+      "price_usd": 40,
+      "payment_methods": ["cash"],
+      "walk_minutes": 18,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": 2026
     }
   ],
   "stadium_lots": []
