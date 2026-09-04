@@ -473,6 +473,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": 2026
+    },
+    {
+      "id": "5303-big-tree-rd",
+      "name": "5303 Big Tree Rd",
+      "address": "5303 Big Tree Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.76653, -78.78722],
+        [42.76658, -78.78753],
+        [42.76622, -78.78756],
+        [42.76619, -78.78728]
+      ],
+      "price_usd": 50,
+      "payment_methods": ["cash"],
+      "walk_minutes": 15,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": 2026
     }
   ],
   "stadium_lots": []
