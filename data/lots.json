@@ -416,6 +416,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "allen-st-parking",
+      "name": "Allen St Parking",
+      "address": "61 Allen St, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.76874, -78.78905],
+        [42.76889, -78.78986],
+        [42.76844, -78.78994],
+        [42.76836, -78.78906]
+      ],
+      "price_usd": 50,
+      "payment_methods": ["cash"],
+      "walk_minutes": 5,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
