@@ -245,6 +245,44 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "5457-big-tree-rd",
+      "name": "5457 Big Tree Rd",
+      "address": "5457 Big Tree Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.76585, -78.78248],
+        [42.76580, -78.78186],
+        [42.76549, -78.78190],
+        [42.76546, -78.78259]
+      ],
+      "price_usd": 50,
+      "payment_methods": ["cash"],
+      "walk_minutes": 20,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
+    },
+    {
+      "id": "berts-bikes",
+      "name": "Bert's Bikes",
+      "address": "4050 Southwestern Blvd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.77464, -78.79997],
+        [42.77522, -78.80025],
+        [42.77461, -78.80261],
+        [42.77369, -78.80258]
+      ],
+      "price_usd": 80,
+      "payment_methods": ["cash"],
+      "walk_minutes": 12,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
