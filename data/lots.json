@@ -492,6 +492,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": 2026
+    },
+    {
+      "id": "chuckies-lot",
+      "name": "Chuckie's Lot",
+      "address": "4367 Abbott Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.76519, -78.79197],
+        [42.76497, -78.79203],
+        [42.76464, -78.79011],
+        [42.76492, -78.79006]
+      ],
+      "price_usd": 60,
+      "payment_methods": ["cash"],
+      "walk_minutes": 15,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
