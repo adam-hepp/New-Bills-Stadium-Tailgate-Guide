@@ -359,6 +359,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "armor-heating",
+      "name": "Armor Heating",
+      "address": "3697 Abbott Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.78347, -78.79019],
+        [42.78350, -78.78925],
+        [42.78306, -78.78900],
+        [42.78286, -78.79003]
+      ],
+      "price_usd": 70,
+      "payment_methods": ["cash"],
+      "walk_minutes": 18,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
