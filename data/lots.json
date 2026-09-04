@@ -428,13 +428,13 @@
         [42.76836, -78.78906]
       ],
       "price_usd": 50,
-      "payment_methods": ["cash"],
+      "payment_methods": ["cash", "venmo"],
       "walk_minutes": 5,
       "amenities": [],
       "last_updated": "2026-09-04",
       "source": "N/A",
       "status": "live",
-      "verified_for_season": null
+      "verified_for_season": 2026
     },
     {
       "id": "caroles",
