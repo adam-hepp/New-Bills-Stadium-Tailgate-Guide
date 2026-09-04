@@ -511,6 +511,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "ez-out",
+      "name": "EZ Out",
+      "address": "5560 Big Tree Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.76622, -78.77864],
+        [42.76628, -78.77903],
+        [42.76572, -78.77919],
+        [42.76564, -78.77875]
+      ],
+      "price_usd": 40,
+      "payment_methods": ["cash", "venmo"],
+      "walk_minutes": 20,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
