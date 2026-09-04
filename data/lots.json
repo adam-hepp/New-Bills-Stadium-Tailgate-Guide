@@ -48,11 +48,11 @@
         [42.77475, -78.79461],
         [42.77475, -78.79411]
       ],
-      "price_usd": 50,
+      "price_usd": 80,
       "payment_methods": ["cash"],
       "walk_minutes": 15,
       "amenities": [],
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-09-04",
       "source": "Google",
       "status": "live",
       "verified_for_season": null
@@ -67,11 +67,11 @@
         [42.76706, -78.79375],
         [42.76686, -78.79231]
       ],
-      "price_usd": 60,
+      "price_usd": 80,
       "payment_methods": ["cash", "venmo"],
       "walk_minutes": 15,
       "amenities": [],
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-09-04",
       "source": "Business",
       "status": "live",
       "verified_for_season": null
@@ -162,11 +162,11 @@
         [42.77475, -78.79406],
         [42.77481, -78.79314]
       ],
-      "price_usd": 0,
+      "price_usd": 80,
       "payment_methods": [],
       "walk_minutes": 15,
       "amenities": [],
-      "last_updated": "2026-07-03",
+      "last_updated": "2026-09-04",
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
