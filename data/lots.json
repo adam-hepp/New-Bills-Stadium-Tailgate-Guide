@@ -454,6 +454,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "fair-weather-parking",
+      "name": "Fair Weather Parking",
+      "address": "4343 Abbott Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.76550, -78.79028],
+        [42.76569, -78.79178],
+        [42.76547, -78.79183],
+        [42.76528, -78.79036]
+      ],
+      "price_usd": 60,
+      "payment_methods": ["cash"],
+      "walk_minutes": 14,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": 2026
     }
   ],
   "stadium_lots": []
