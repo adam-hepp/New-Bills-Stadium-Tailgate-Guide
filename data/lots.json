@@ -397,6 +397,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": 2026
+    },
+    {
+      "id": "mafia-boneyard",
+      "name": "Mafia Boneyard",
+      "address": "4401 Abbott Road, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.76403, -78.79114],
+        [42.76417, -78.79225],
+        [42.76378, -78.79236],
+        [42.76369, -78.79144]
+      ],
+      "price_usd": 50,
+      "payment_methods": ["cash", "venmo", "zelle"],
+      "walk_minutes": 15,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
