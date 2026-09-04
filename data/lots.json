@@ -227,6 +227,24 @@
       "source": "Website: https://yellowbrickparkinglot.com/",
       "status": "live",
       "verified_for_season": 2026
+    },
+    {
+      "id": "pilfer-oakwood-lot",
+      "name": "Pilfer & Oakwood",
+      "polygon_coordinates": [
+        [42.76781, -78.78928],
+        [42.76742, -78.78936],
+        [42.76736, -78.78922],
+        [42.76775, -78.78908]
+      ],
+      "price_usd": 40,
+      "payment_methods": ["cash"],
+      "walk_minutes": 10,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
