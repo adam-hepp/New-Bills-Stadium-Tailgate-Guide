@@ -435,6 +435,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "caroles",
+      "name": "Carole's",
+      "address": "5502 Big Tree Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.76642, -78.78086],
+        [42.76647, -78.78047],
+        [42.76589, -78.78061],
+        [42.76592, -78.78092]
+      ],
+      "price_usd": 40,
+      "payment_methods": ["cash", "venmo"],
+      "walk_minutes": 20,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
