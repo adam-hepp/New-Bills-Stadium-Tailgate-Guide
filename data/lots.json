@@ -340,6 +340,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "buffalos-best",
+      "name": "Buffalo's Best",
+      "address": "3700 Southwestern Blvd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.78256, -78.77581],
+        [42.78261, -78.77500],
+        [42.78200, -78.77497],
+        [42.78200, -78.77583]
+      ],
+      "price_usd": 50,
+      "payment_methods": ["cash"],
+      "walk_minutes": 25,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
