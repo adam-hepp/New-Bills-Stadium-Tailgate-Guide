@@ -276,7 +276,7 @@
         [42.77369, -78.80258]
       ],
       "price_usd": 80,
-      "payment_methods": ["cash"],
+      "payment_methods": ["cash", "venmo"],
       "walk_minutes": 12,
       "amenities": [],
       "last_updated": "2026-09-04",
@@ -378,6 +378,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "milligans",
+      "name": "Milligan's",
+      "address": "3879 Southwestern Blvd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.77717, -78.79153],
+        [42.77747, -78.79061],
+        [42.77664, -78.79058],
+        [42.77661, -78.79150]
+      ],
+      "price_usd": 80,
+      "payment_methods": ["cash"],
+      "walk_minutes": 11,
+      "amenities": [],
+      "last_updated": "2026-09-04",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": 2026
     }
   ],
   "stadium_lots": []
