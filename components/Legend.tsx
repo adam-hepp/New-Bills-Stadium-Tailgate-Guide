@@ -7,9 +7,9 @@ const STADIUM_GREY = "#6B7280";
 
 export default function Legend() {
   return (
-    <div className="absolute bottom-6 left-6 z-[1000] bg-white/95 backdrop-blur rounded-md shadow-lg ring-1 ring-black/5 px-4 py-3 text-sm">
-      <div className="font-semibold text-slate-800 mb-2">Legend</div>
-      <div className="space-y-1.5">
+    <div className="absolute bottom-3 left-3 sm:bottom-6 sm:left-6 z-[1000] bg-white/95 backdrop-blur rounded-md shadow-lg ring-1 ring-black/5 px-2.5 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm max-w-[70vw] sm:max-w-none">
+      <div className="font-semibold text-slate-800 mb-1 sm:mb-2">Legend</div>
+      <div className="space-y-1 sm:space-y-1.5">
         <LegendRow
           color={PRIVATE_BLUE}
           label="Private Tailgate Lots"
