@@ -86,11 +86,11 @@
         [42.76997, -78.79189],
         [42.76983, -78.79094]
       ],
-      "price_usd": 100,
+      "price_usd": 80,
       "payment_methods": ["cash"],
       "walk_minutes": 5,
       "amenities": ["porta_potty", "grills_allowed", "generators_allowed", "lights"],
-      "last_updated": "2026-09-04",
+      "last_updated": "2026-09-05",
       "source": "Reddit",
       "status": "live",
       "verified_for_season": 2026
