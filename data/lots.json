@@ -624,6 +624,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "wendys-lot",
+      "name": "Wendy's Lot",
+      "address": "4371 Abbott Road, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.76494, -78.79203],
+        [42.76472, -78.79211],
+        [42.76456, -78.79056],
+        [42.76472, -78.79053]
+      ],
+      "price_usd": 40,
+      "payment_methods": ["cash"],
+      "walk_minutes": 13,
+      "amenities": [],
+      "last_updated": "2026-09-05",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
