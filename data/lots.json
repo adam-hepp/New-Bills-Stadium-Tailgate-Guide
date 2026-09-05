@@ -567,6 +567,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "neighbors-community-church",
+      "name": "Neighbors Community Church",
+      "address": "3766 Abbott Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.78042, -78.78989],
+        [42.78050, -78.79103],
+        [42.78025, -78.79106],
+        [42.78025, -78.78989]
+      ],
+      "price_usd": 60,
+      "payment_methods": ["cash"],
+      "walk_minutes": 13,
+      "amenities": [],
+      "last_updated": "2026-09-05",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
