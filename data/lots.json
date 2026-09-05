@@ -586,6 +586,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "abbott-road-animal-hospital",
+      "name": "Abbott Road Animal Hospital",
+      "address": "3816 Abbott Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.77950, -78.79058],
+        [42.77950, -78.78975],
+        [42.77894, -78.78967],
+        [42.77883, -78.79031]
+      ],
+      "price_usd": 60,
+      "payment_methods": ["cash"],
+      "walk_minutes": 10,
+      "amenities": [],
+      "last_updated": "2026-09-05",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
