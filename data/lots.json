@@ -13,7 +13,7 @@
       "price_usd": 50,
       "payment_methods": ["cash", "venmo"],
       "walk_minutes": 25,
-      "amenities": ["indoor_bathrooms", "rvs_allowed"],
+      "amenities": ["porta_potty", "indoor_bathrooms", "grills_allowed", "generators_allowed", "rvs_allowed", "lights"],
       "last_updated": "2026-09-05",
       "source": "Fan verified",
       "status": "live",
@@ -505,11 +505,11 @@
       "price_usd": 60,
       "payment_methods": ["cash"],
       "walk_minutes": 15,
-      "amenities": [],
-      "last_updated": "2026-09-04",
+      "amenities": ["porta_potty", "grills_allowed", "lights", "generators_allowed"],
+      "last_updated": "2026-09-05",
       "source": "N/A",
       "status": "live",
-      "verified_for_season": null
+      "verified_for_season": 2026
     },
     {
       "id": "ez-out",
@@ -543,8 +543,8 @@
       "price_usd": 40,
       "payment_methods": ["cash"],
       "walk_minutes": 18,
-      "amenities": [],
-      "last_updated": "2026-09-04",
+      "amenities": ["porta_potty", "grills_allowed", "generators_allowed", "tents_allowed"],
+      "last_updated": "2026-09-05",
       "source": "N/A",
       "status": "live",
       "verified_for_season": 2026
