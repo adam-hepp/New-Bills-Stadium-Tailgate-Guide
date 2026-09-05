@@ -21,6 +21,12 @@ export default function Home() {
           </p>
         </div>
         <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
+          <a
+            href="mailto:ahepp7@gmail.com"
+            className="whitespace-nowrap text-xs text-slate-400 hover:text-slate-200 underline decoration-slate-600 underline-offset-2"
+          >
+            ahepp7@gmail.com
+          </a>
           <button
             type="button"
             onClick={() => setModalType("correction")}
