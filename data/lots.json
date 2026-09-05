@@ -681,6 +681,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "ecc-campus",
+      "name": "ECC Campus",
+      "address": "4041 Southwestern Blvd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.77433, -78.79703],
+        [42.77350, -78.80014],
+        [42.77156, -78.79953],
+        [42.77192, -78.79661]
+      ],
+      "price_usd": 75,
+      "payment_methods": ["card", "apple_pay"],
+      "walk_minutes": 7,
+      "amenities": [],
+      "last_updated": "2026-09-05",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
