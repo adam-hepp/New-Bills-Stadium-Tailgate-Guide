@@ -643,6 +643,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "gravel-lot",
+      "name": "Gravel Lot",
+      "address": "3856 Southwestern Blvd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.77872, -78.79022],
+        [42.77856, -78.79100],
+        [42.77781, -78.79075],
+        [42.77803, -78.79006]
+      ],
+      "price_usd": 80,
+      "payment_methods": ["cash", "venmo"],
+      "walk_minutes": 10,
+      "amenities": [],
+      "last_updated": "2026-09-05",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
