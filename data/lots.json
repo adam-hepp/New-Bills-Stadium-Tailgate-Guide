@@ -662,6 +662,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "garys",
+      "name": "Gary's",
+      "address": "4914 US-20A, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.76806, -78.79822],
+        [42.76825, -78.79967],
+        [42.76794, -78.79969],
+        [42.76775, -78.79833]
+      ],
+      "price_usd": 30,
+      "payment_methods": ["cash"],
+      "walk_minutes": 18,
+      "amenities": [],
+      "last_updated": "2026-09-05",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
