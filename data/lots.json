@@ -605,6 +605,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "3730-3740-california-rd",
+      "name": "3730-3740 California Rd",
+      "address": "3730-3740 California Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.78383, -78.78544],
+        [42.78383, -78.78408],
+        [42.78319, -78.78369],
+        [42.78328, -78.78547]
+      ],
+      "price_usd": 50,
+      "payment_methods": ["cash", "venmo"],
+      "walk_minutes": 24,
+      "amenities": [],
+      "last_updated": "2026-09-05",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
