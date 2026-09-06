@@ -668,16 +668,16 @@
       "name": "Gary's",
       "address": "4914 US-20A, Orchard Park, NY 14127",
       "polygon_coordinates": [
-        [42.76806, -78.79822],
-        [42.76825, -78.79967],
-        [42.76794, -78.79969],
-        [42.76775, -78.79833]
+        [42.76869, -78.80267],
+        [42.76881, -78.80364],
+        [42.76836, -78.80372],
+        [42.76825, -78.80275]
       ],
       "price_usd": 30,
       "payment_methods": ["cash"],
       "walk_minutes": 18,
       "amenities": [],
-      "last_updated": "2026-09-05",
+      "last_updated": "2026-09-06",
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
