@@ -67,11 +67,11 @@
         [42.76706, -78.79375],
         [42.76686, -78.79231]
       ],
-      "price_usd": 80,
+      "price_usd": 100,
       "payment_methods": ["cash", "venmo"],
       "walk_minutes": 15,
       "amenities": [],
-      "last_updated": "2026-09-04",
+      "last_updated": "2026-09-07",
       "source": "Business",
       "status": "live",
       "verified_for_season": null
@@ -88,9 +88,9 @@
       ],
       "price_usd": 80,
       "payment_methods": ["cash"],
-      "walk_minutes": 5,
+      "walk_minutes": 1,
       "amenities": ["porta_potty", "grills_allowed", "generators_allowed", "lights"],
-      "last_updated": "2026-09-05",
+      "last_updated": "2026-09-07",
       "source": "Reddit",
       "status": "live",
       "verified_for_season": 2026
