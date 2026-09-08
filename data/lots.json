@@ -10,11 +10,11 @@
         [42.77536, -78.78214],
         [42.77500, -78.77883]
       ],
-      "price_usd": 50,
+      "price_usd": 30,
       "payment_methods": ["cash", "venmo"],
       "walk_minutes": 25,
       "amenities": ["porta_potty", "indoor_bathrooms", "grills_allowed", "generators_allowed", "rvs_allowed", "lights"],
-      "last_updated": "2026-09-05",
+      "last_updated": "2026-09-08",
       "source": "Fan verified",
       "status": "live",
       "verified_for_season": 2026
