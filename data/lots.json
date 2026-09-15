@@ -738,6 +738,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": 2026
+    },
+    {
+      "id": "the-lot",
+      "name": "The Lot",
+      "address": "5220 Big Tree Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.76742, -78.79044],
+        [42.76739, -78.79025],
+        [42.76714, -78.79031],
+        [42.76717, -78.79053]
+      ],
+      "price_usd": 70,
+      "payment_methods": ["cash", "venmo"],
+      "walk_minutes": 11,
+      "amenities": [],
+      "last_updated": "2026-09-14",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": 2026
     }
   ],
   "stadium_lots": []
