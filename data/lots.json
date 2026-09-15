@@ -700,6 +700,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "topshelf-lot",
+      "name": "Topshelf Lot",
+      "address": "4169 Allendale Parkway, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.77206, -78.80908],
+        [42.77222, -78.80936],
+        [42.77217, -78.80978],
+        [42.77169, -78.80978]
+      ],
+      "price_usd": 40,
+      "payment_methods": ["cash", "venmo"],
+      "walk_minutes": 25,
+      "amenities": [],
+      "last_updated": "2026-09-14",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": 2026
     }
   ],
   "stadium_lots": []
