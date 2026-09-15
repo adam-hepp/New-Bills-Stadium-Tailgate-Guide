@@ -719,6 +719,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": 2026
+    },
+    {
+      "id": "brians-lot",
+      "name": "Brian's Lot",
+      "address": "5277 Big Tree Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.76667, -78.78844],
+        [42.76667, -78.78819],
+        [42.76539, -78.78819],
+        [42.76542, -78.78847]
+      ],
+      "price_usd": 50,
+      "payment_methods": ["cash"],
+      "walk_minutes": 15,
+      "amenities": [],
+      "last_updated": "2026-09-14",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": 2026
     }
   ],
   "stadium_lots": []
