@@ -29,14 +29,14 @@
         [42.77872, -78.78672],
         [42.77875, -78.78325]
       ],
-      "price_usd": 50,
+      "price_usd": 80,
       "payment_methods": ["cash"],
       "walk_minutes": 16,
-      "amenities": [],
-      "last_updated": "2026-06-01",
+      "amenities": ["porta_potty"],
+      "last_updated": "2026-09-21",
       "source": "Fan verified",
       "status": "live",
-      "verified_for_season": null
+      "verified_for_season": 2026
     },
     {
       "id": "twin-oaks",
