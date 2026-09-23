@@ -776,6 +776,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "parker-lot",
+      "name": "Parker Lot",
+      "address": "4836-4830 Big Tree Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.76844, -78.80122],
+        [42.76842, -78.80064],
+        [42.76811, -78.80061],
+        [42.76806, -78.80125]
+      ],
+      "price_usd": 40,
+      "payment_methods": ["cash"],
+      "walk_minutes": 20,
+      "amenities": [],
+      "last_updated": "2026-09-23",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
