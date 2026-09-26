@@ -833,6 +833,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "sunrise-medical",
+      "name": "Sunrise Medical",
+      "address": "3775 Southwestern Blvd Ste B, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.78128, -78.78144],
+        [42.78139, -78.78106],
+        [42.78064, -78.78075],
+        [42.78050, -78.78128]
+      ],
+      "price_usd": 60,
+      "payment_methods": ["cash"],
+      "walk_minutes": 17,
+      "amenities": [],
+      "last_updated": "2026-09-26",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
