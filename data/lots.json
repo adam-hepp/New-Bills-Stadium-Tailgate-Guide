@@ -814,6 +814,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "5100-big-tree-rd",
+      "name": "5100 Big Tree Rd",
+      "address": "5100 Big Tree Rd, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.76822, -78.79386],
+        [42.76808, -78.79289],
+        [42.76758, -78.79306],
+        [42.76769, -78.79406]
+      ],
+      "price_usd": 80,
+      "payment_methods": ["cash"],
+      "walk_minutes": 12,
+      "amenities": [],
+      "last_updated": "2026-09-26",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
