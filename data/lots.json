@@ -105,11 +105,11 @@
         [42.78003, -78.78250],
         [42.78072, -78.78194]
       ],
-      "price_usd": 50,
+      "price_usd": 60,
       "payment_methods": ["cash"],
       "walk_minutes": 18,
       "amenities": [],
-      "last_updated": "2026-06-07",
+      "last_updated": "2026-09-26",
       "source": "Business",
       "status": "live",
       "verified_for_season": null
