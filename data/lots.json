@@ -852,6 +852,25 @@
       "source": "N/A",
       "status": "live",
       "verified_for_season": null
+    },
+    {
+      "id": "sheldon-road-apartments",
+      "name": "Sheldon Road Apartments",
+      "address": "3840 Sheldon Road, Orchard Park, NY 14127",
+      "polygon_coordinates": [
+        [42.77942, -78.79228],
+        [42.77936, -78.79106],
+        [42.77892, -78.79094],
+        [42.77892, -78.79231]
+      ],
+      "price_usd": 60,
+      "payment_methods": ["cash"],
+      "walk_minutes": 10,
+      "amenities": [],
+      "last_updated": "2026-09-27",
+      "source": "N/A",
+      "status": "live",
+      "verified_for_season": null
     }
   ],
   "stadium_lots": []
